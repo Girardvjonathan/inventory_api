@@ -4,14 +4,20 @@ module Types
     include GraphQL::Types::Relay::HasNodeField
     include GraphQL::Types::Relay::HasNodesField
 
-    # Add root-level fields here.
-    # They will be entry points for queries on your schema.
+    field :items, [Types::ItemType], null: false, description: "Return a list of items"
+    field :warehouses, [Types::WarehouseType], null: false, description: "Return a list of warehouse"
+    field :inventory, [Types::InventoryType], null: false, description: "Return the inventory per warehouse"
+    
+    def items
+      Item.all
+    end
 
-    # TODO: remove me
-    field :test_field, String, null: false,
-      description: "An example field added by the generator"
-    def test_field
-      "Hello World!"
+    def warehouses
+      Warehouse.all
+    end
+
+    def inventory
+      Inventory.all
     end
   end
 end
