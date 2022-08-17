@@ -5,6 +5,7 @@ class CreateItems < ActiveRecord::Migration[7.0]
       t.string :color
       t.string :size
 
+      add_index :name, :color, :size, unique: true
       t.timestamps
     end
   end
